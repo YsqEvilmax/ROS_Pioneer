@@ -1,4 +1,0 @@
-#!/bin/bash
-catkin_make
-bash devel/setup.bash
-roslaunch robot_driver launchStageLaser.launch
