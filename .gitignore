@@ -1,2 +1,6 @@
-#ingnore all backup files
+#ignore all backup files
 *~
+
+#ignore 
+/build
+/devel

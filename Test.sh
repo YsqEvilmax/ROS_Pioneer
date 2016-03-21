@@ -18,7 +18,9 @@ function init
     source $ROS_ROOT/../../setup.bash
     cd src
     catkin_init_workspace
+    catkin_create_pkg "$pkg_name" std_msgs roscpp
     cd ..
+    source devel/setup.bash
 }
 
 while getopts mrplih?: opt

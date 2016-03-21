@@ -1,7 +1,0 @@
-set(_CATKIN_CURRENT_PACKAGE "robot_driver")
-set(robot_driver_MAINTAINER "shawn <shawn@todo.todo>")
-set(robot_driver_DEPRECATED "")
-set(robot_driver_VERSION "0.0.0")
-set(robot_driver_BUILD_DEPENDS "roscpp" "std_msgs")
-set(robot_driver_RUN_DEPENDS "roscpp" "std_msgs")
-set(robot_driver_BUILDTOOL_DEPENDS "catkin")
