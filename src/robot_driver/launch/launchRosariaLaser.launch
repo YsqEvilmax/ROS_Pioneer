@@ -1,0 +1,10 @@
+<launch> 
+    <node pkg="hokuyo_node" type="hokuyo_node" name="hokuyo"> 
+    </node> 
+    <node pkg="robot_driver" type="pioneer_laser_node" name="pioneer_laser_node" output="screen"> 
+    </node> 
+    <node pkg="rviz" type="rviz" name="rviz"> 
+    </node> 
+    <node pkg="rosaria" type="RosAria" name="RosAria"> 
+    </node> 
+</launch>

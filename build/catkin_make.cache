@@ -1,0 +1,2 @@
+robot_driver
+-DCATKIN_DEVEL_PREFIX=/home/shawn/ros_ws/devel -DCMAKE_INSTALL_PREFIX=/home/shawn/ros_ws/install -G Unix Makefiles

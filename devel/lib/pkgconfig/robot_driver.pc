@@ -1,0 +1,8 @@
+prefix=/home/shawn/ros_ws/devel
+
+Name: robot_driver
+Description: Description of robot_driver
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/shawn/ros_ws/devel/lib 
+Requires: 
