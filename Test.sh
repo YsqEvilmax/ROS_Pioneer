@@ -10,16 +10,25 @@ launcher="launchStageLaser.launch"
 #parse the cmd
 function usage
 {
-    echo >&2 "usage: $0 [-h] [-m master_url] [-r ros_ip] [-p pkg_name] [-l launcher]"
+    echo >&2 "usage: $0 [-h] [-i] [-m master_url] [-r ros_ip] [-p pkg_name] [-l launcher]"
 }
 
-while getopts h?pl: opt
+function init
+{
+    source $ROS_ROOT/../../setup.bash
+    cd src
+    catkin_init_workspace
+    cd ..
+}
+
+while getopts mrplih?: opt
 do
     case "$opt" in
       m)  master_url="$OPTARG";;
       r)  ros_ip="$OPTARG";;
       p)  pkg_name="$OPTARG";;
       l)  launcher="$OPTARG";;
+      i)  init;;
       h|\?)
           usage
 	  exit 1;;
