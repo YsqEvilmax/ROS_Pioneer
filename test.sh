@@ -15,6 +15,10 @@ function usage
 
 function init
 {
+    if ["ROS_ROOT" = ""]; then
+        export ROS_ROOT="/opt/ros/indigo/share/ros"
+    fi
+    
     source $ROS_ROOT/../../setup.bash
     cd src
     catkin_init_workspace
