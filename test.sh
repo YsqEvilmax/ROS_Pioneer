@@ -15,7 +15,7 @@ function usage
 
 function init
 {
-    if ["ROS_ROOT" = ""]; then
+    if ["$ROS_ROOT" = ""]; then
         export ROS_ROOT="/opt/ros/indigo/share/ros"
     fi
     
