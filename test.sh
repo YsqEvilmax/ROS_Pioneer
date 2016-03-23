@@ -7,6 +7,12 @@ ros_ip="localhost"
 pkg_name="robot_driver"
 launcher="launchStageLaser.launch"
 
+#initialize the environment variables
+if ["$ROS_ROOT" = ""]; then
+    export ROS_ROOT="/opt/ros/indigo/share/ros"
+fi
+source $ROS_ROOT/../../setup.bash
+
 #parse the cmd
 function usage
 {
@@ -15,11 +21,6 @@ function usage
 
 function init
 {
-    if ["$ROS_ROOT" = ""]; then
-        export ROS_ROOT="/opt/ros/indigo/share/ros"
-    fi
-    
-    source $ROS_ROOT/../../setup.bash
     cd src
     catkin_init_workspace
     catkin_create_pkg "$pkg_name" std_msgs roscpp
