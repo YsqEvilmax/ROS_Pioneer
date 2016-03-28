@@ -10,4 +10,4 @@ This is the project of COMPSYS726 Robotic &amp; Intelligence. The set-up process
 1. Download and extract this project to any where on you local machine.
 2. Rename the folder name to whatever you like (such as "rosws").
 3. Go to your folder and register the shell script in CMD (cd [your folder] && chmod u+x test.sh ).
-4. Run "bash test.sh -i" and see the result ("-i" optin is only necessary for your first time to run the script).
+4. Run "bash test.sh -i" and see the result ("-i" option is only necessary when your first time to run the script).
