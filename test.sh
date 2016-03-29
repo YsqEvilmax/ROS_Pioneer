@@ -28,7 +28,7 @@ function init
     source devel/setup.bash
 }
 
-while getopts mrplih?: opt
+while getopts m:r:p:l:ih?: opt
 do
     case "$opt" in
       m)  master_url="$OPTARG";;
