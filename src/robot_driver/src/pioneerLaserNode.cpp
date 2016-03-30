@@ -15,7 +15,8 @@ void laserScanCallback(const sensor_msgs::LaserScan::ConstPtr& laserScanData)
   {
     if(laserScanData->ranges[i] < 0.5)
     {
-      velocityCommand.linear.x = -0.1;
+      velocityCommand.linear.x = 0;
+      velocityCommand.angular.z = 0.1;
       break;
     }
   }
