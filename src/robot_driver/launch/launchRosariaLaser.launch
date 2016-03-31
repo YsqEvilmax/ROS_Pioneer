@@ -1,7 +1,7 @@
 <launch> 
     <node pkg="hokuyo_node" type="hokuyo_node" name="hokuyo"> 
     </node> 
-    <node pkg="robot_driver" type="pioneer_laser_node" name="pioneer_laser_node" output="screen"> 
+    <node pkg="robot_driver" type="robot_driver_node" name="robot_driver_node" output="screen"> 
     </node> 
     <node pkg="rviz" type="rviz" name="rviz"> 
     </node> 

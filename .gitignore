@@ -7,5 +7,4 @@
 **/rosaria
 
 #ignore make file
-**/CMakeLists.txt
 **/package.xml

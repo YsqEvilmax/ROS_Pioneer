@@ -1,5 +1,5 @@
 <launch>     
-  <node pkg="robot_driver" type="pioneer_laser_node" name="pioneer_laser_node" output="screen">         
+  <node pkg="robot_driver" type="robot_driver_node" name="robot_driver_node" output="screen">         
     <remap from="RosAria/cmd_vel" to="cmd_vel"/>     
   </node>     
   <node pkg="stage_ros" type="stageros" name="stageros" args="$(find robot_driver)/world/myworld.world">         
