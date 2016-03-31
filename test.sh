@@ -23,8 +23,11 @@ function init
 {
     cd src
     catkin_init_workspace
-    catkin_create_pkg "$pkg_name" std_msgs roscpp
+
+    if catkin_create_pkg "$pkg_name" std_msgs roscpp; then
     cat robot_driver/cmake_config.txt >> robot_driver/CMakeLists.txt
+    fi
+       
     [ -d rosaria ] || git clone https://github.com/amor-ros-pkg/rosaria.git
     cd ..
     source devel/setup.bash
