@@ -4,4 +4,4 @@
 #ignore folders
 /build
 /devel
-/rosaria
+/src/rosaria
