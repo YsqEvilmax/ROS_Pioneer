@@ -4,4 +4,8 @@
 #ignore folders
 /build
 /devel
-/src/rosaria
+**/rosaria
+
+#ignore make file
+**/CMakeLists.txt
+**/package.xml
