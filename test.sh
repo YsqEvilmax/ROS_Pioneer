@@ -49,7 +49,6 @@ export ROS_MASTER_URI=$master_url
 export ROS_IP=$ros_ip
 
 #cmd execution
-echo $launcher
 catkin_make
 source devel/setup.bash
 roslaunch "$pkg_name" "$launcher"

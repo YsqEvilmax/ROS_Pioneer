@@ -138,16 +138,6 @@ include_directories(
 #   ${catkin_LIBRARIES}
 # )
 
-## Declare a C++ executable
-add_executable(pioneer_laser_node src/pioneerLaserNode.cpp)
-
-## Add cmake target dependencies of the executable
-## same as for the library above
-add_dependencies(pioneer_laser_node ${catkin_EXPORTED_TARGETS})
-
-## Specify libraries to link a library or executable target against
-target_link_libraries(pioneer_laser_node ${catkin_LIBRARIES})
-
 #############
 ## Install ##
 #############

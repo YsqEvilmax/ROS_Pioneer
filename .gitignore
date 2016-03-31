@@ -1,6 +1,7 @@
 #ignore all backup files
 *~
 
-#ignore 
+#ignore folders
 /build
 /devel
+/rosaria
