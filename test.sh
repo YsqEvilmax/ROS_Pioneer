@@ -8,7 +8,7 @@ pkg_name="robot_driver"
 launcher="launchStageLaser.launch"
 
 #initialize the environment variables
-if ["$ROS_ROOT" = ""]; then
+if ! [ -n "$ROS_ROOT" ]; then
     export ROS_ROOT="/opt/ros/indigo/share/ros"
 fi
 source $ROS_ROOT/../../setup.bash
@@ -22,12 +22,22 @@ function usage
 function init
 {
     cd src
+    echo -e
+    echo "Init work space!"
     catkin_init_workspace
 
-    if catkin_create_pkg "$pkg_name" std_msgs roscpp; then
-    cat robot_driver/cmake_config.txt >> robot_driver/CMakeLists.txt
-    fi
-       
+    echo -e 
+    echo "Create package $pkg_name!"
+    catkin_create_pkg "$pkg_name" std_msgs roscpp
+
+    echo -e
+    echo "Modify CMakeLists.txt"
+    cd robot_driver
+    content=$(<cmake_config.txt)
+    echo "$content"
+    grep -q "$content" "CMakeLists.txt" || echo "$content" >> "CMakeLists.txt"
+    cd ..   
+    
     [ -d rosaria ] || git clone https://github.com/amor-ros-pkg/rosaria.git
     cd ..
     source devel/setup.bash
@@ -53,6 +63,8 @@ export ROS_MASTER_URI=$master_url
 export ROS_IP=$ros_ip
 
 #cmd execution
+echo -e
+echo "Start to make and launch!"
 catkin_make
 source devel/setup.bash
 roslaunch "$pkg_name" "$launcher"
