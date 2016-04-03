@@ -21,22 +21,6 @@ pair<float, float> checkBlock(const sensor_msgs::LaserScan::ConstPtr &laserScanD
     }
     return make_pair(min, max);
 }
-void speedHandler(int space)
-{
-    if(space < 0.1) // reverse
-    {
-        cout<< "Watch out! Reverse first." << endl;
-        velocityCommand.linear.x = -0.1;
-    }
-    else if(space < 0.3)
-    {
-        velocityCommand.linear.x = 0;
-    }
-    else
-    {
-        velocityCommand.linear.x = 0.1;
-    }
-}
 
 void keepBalance(const sensor_msgs::LaserScan::ConstPtr &laserScanData)
 {
@@ -50,8 +34,7 @@ void keepBalance(const sensor_msgs::LaserScan::ConstPtr &laserScanData)
     if(midBlock.first < 0.5)
     {
         cout << "Too colse to the obticale in front, ";
-        speedHandler(midBlock.first);
-        //velocityCommand.linear.x = 0;
+        velocityCommand.linear.x = 0;
         if(leftBlock.second >= rightBlock.second)
         {
             cout << "turn left!" << endl;
@@ -67,16 +50,14 @@ void keepBalance(const sensor_msgs::LaserScan::ConstPtr &laserScanData)
     if(leftBlock.first < 0.4)
     {
         cout<< "Potential knock at left! Turn right!" << endl;
-        speedHandler(leftBlock.first);
-        //velocityCommand.linear.x = 0.1;
+        velocityCommand.linear.x = 0.1;
         velocityCommand.angular.z = -0.1;
     }
  
     if(rightBlock.first < 0.4)
     {
         cout<< "Potential knock at right! Turn left!" << endl;
-        speedHandler(rightBlock.first);
-        //velocityCommand.linear.x = 0.1;
+        velocityCommand.linear.x = 0.1;
         velocityCommand.angular.z = 0.1;
     }
 }
