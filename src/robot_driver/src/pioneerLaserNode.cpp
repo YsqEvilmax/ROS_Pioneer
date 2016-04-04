@@ -11,7 +11,7 @@ geometry_msgs::Twist velocityCommand;
 
 pair<float, float> checkBlock(const sensor_msgs::LaserScan::ConstPtr &laserScanData, int start, int end)
 {
-    float min = 99999, max = 0;
+    float min = (1 << 31), max = 0;
     for(int i = start; i < end; i++)
     {
         if(laserScanData->ranges[i] < min)
@@ -28,7 +28,7 @@ void speedHandler(int space)
         cout<< "Watch out! Reverse first." << endl;
         velocityCommand.linear.x = -0.1;
     }
-    else if(space < 0.3)
+    else if(space < 0.2)
     {
         velocityCommand.linear.x = 0;
     }
@@ -47,7 +47,7 @@ void keepBalance(const sensor_msgs::LaserScan::ConstPtr &laserScanData)
     pair<float, float> midBlock = checkBlock(laserScanData, blockDataNum, blockDataNum *2);
     pair<float, float> leftBlock = checkBlock(laserScanData, blockDataNum * 2,  rangeDataNum);
 
-    if(midBlock.first < 0.5)
+    if(midBlock.first < 0.3)
     {
         cout << "Too colse to the obticale in front, ";
         speedHandler(midBlock.first);
@@ -64,7 +64,7 @@ void keepBalance(const sensor_msgs::LaserScan::ConstPtr &laserScanData)
         }   
     }
 
-    if(leftBlock.first < 0.4)
+    if(leftBlock.first < 0.2)
     {
         cout<< "Potential knock at left! Turn right!" << endl;
         speedHandler(leftBlock.first);
@@ -72,7 +72,7 @@ void keepBalance(const sensor_msgs::LaserScan::ConstPtr &laserScanData)
         velocityCommand.angular.z = -0.1;
     }
  
-    if(rightBlock.first < 0.4)
+    if(rightBlock.first < 0.2)
     {
         cout<< "Potential knock at right! Turn left!" << endl;
         speedHandler(rightBlock.first);
