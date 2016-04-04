@@ -28,7 +28,7 @@ void SpeedHandler(float space)
         cout<< "Watch out! Reverse first." << endl;
         velocityCommand.linear.x = -0.1;
     }
-    else if(space < 0.3)
+    else if(space < 0.35)
     {
         cout<< "Too close! Speed down." << endl;
         velocityCommand.linear.x = 0;
@@ -71,8 +71,6 @@ void Go(const sensor_msgs::LaserScan::ConstPtr &laserScanData)
 
 void laserScanCallback(const sensor_msgs::LaserScan::ConstPtr& laserScanData)
 {
-    velocityCommand.linear.x = 0.1;
-    velocityCommand.angular.z = 0;
     Go(laserScanData);   
 }
 
