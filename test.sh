@@ -42,7 +42,7 @@ function init
 
 function cler
 {
-    rm -fr src
+    rm -fr ../ros_pioneer_ws
 }
 
 while getopts ichm:r:p:l:?: opt
@@ -53,7 +53,8 @@ do
       p)  pkg_name="$OPTARG";;
       l)  launcher="$OPTARG";;
       i)  init;;
-      c)  cler;;
+      c)  cler
+          exit 1;;
       h|\?)
           usage
 	  exit 1;;
