@@ -16,7 +16,7 @@ source $ROS_ROOT/../../setup.bash
 #parse the cmd
 function usage
 {
-    echo >&2 "usage: $0 [-h] [-i] [-m master_url] [-r ros_ip] [-p pkg_name] [-l launcher]"
+    echo >&2 "usage: $0 [-h] [-i] [-c] [-m master_url] [-r ros_ip] [-p pkg_name] [-l launcher]"
 }
 
 function init
