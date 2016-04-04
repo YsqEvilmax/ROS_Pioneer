@@ -9,7 +9,7 @@ using namespace ros;
 
 geometry_msgs::Twist velocityCommand;
 
-pair<float, float> checkBlock(const sensor_msgs::LaserScan::ConstPtr &laserScanData, int start, int end)
+pair<float, float> CheckBlock(const sensor_msgs::LaserScan::ConstPtr &laserScanData, int start, int end)
 {
     float min = 99999, max = 0;
     for(int i = start; i < end; i++)
@@ -21,7 +21,7 @@ pair<float, float> checkBlock(const sensor_msgs::LaserScan::ConstPtr &laserScanD
     }
     return make_pair(min, max);
 }
-void speedHandler(float space)
+void SpeedHandler(float space)
 {
     if(space < 0.15) // reverse
     {
@@ -30,6 +30,7 @@ void speedHandler(float space)
     }
     else if(space < 0.3)
     {
+        cout<< "Too close! Speed down." << endl;
         velocityCommand.linear.x = 0;
     }
     else
@@ -38,56 +39,41 @@ void speedHandler(float space)
     }
 }
 
-void keepBalance(const sensor_msgs::LaserScan::ConstPtr &laserScanData)
+void BalanceKeeper(float left, float right)
+{
+     if(left >= right)
+     {
+        cout << "turn left!" << endl;
+        velocityCommand.angular.z = 0.1;
+     }
+     else
+     {
+        cout << "turn right!" << endl;
+        velocityCommand.angular.z = -0.1;
+     }      
+}
+
+void Go(const sensor_msgs::LaserScan::ConstPtr &laserScanData)
 {
     float rangeDataNum = 1 + (laserScanData->angle_max - laserScanData->angle_min)/(laserScanData->angle_increment);
     int blockDataNum = rangeDataNum / 3;
 
-    pair<float, float> rightBlock = checkBlock(laserScanData, 0, blockDataNum);
-    pair<float, float> midBlock = checkBlock(laserScanData, blockDataNum, blockDataNum *2);
-    pair<float, float> leftBlock = checkBlock(laserScanData, blockDataNum * 2,  rangeDataNum);
-
-    if(midBlock.first < 0.4)
-    {
-        cout << "Too colse to the obticale in front, ";
-        speedHandler(midBlock.first);
-        //velocityCommand.linear.x = 0;
-        if(leftBlock.second >= rightBlock.second)
-        {
-            cout << "turn left!" << endl;
-            velocityCommand.angular.z = 0.1;
-        }
-        else
-        {
-            cout << "turn right!" << endl;
-            velocityCommand.angular.z = -0.1;
-        }   
-    }
-
-    if(leftBlock.first < 0.3)
-    {
-        cout<< "Potential knock at left! Turn right!" << endl;
-        speedHandler(leftBlock.first);
-        //velocityCommand.linear.x = 0.1;
-        velocityCommand.angular.z = -0.1;
-    }
- 
-    if(rightBlock.first < 0.3)
-    {
-        cout<< "Potential knock at right! Turn left!" << endl;
-        speedHandler(rightBlock.first);
-        //velocityCommand.linear.x = 0.1;
-        velocityCommand.angular.z = 0.1;
-    }
+    pair<float, float> rightBlock = CheckBlock(laserScanData, 0, blockDataNum);
+    pair<float, float> midBlock = CheckBlock(laserScanData, blockDataNum, blockDataNum *2);
+    pair<float, float> leftBlock = CheckBlock(laserScanData, blockDataNum * 2,  rangeDataNum);
+   
+    SpeedHandler(midBlock.first);
+    BalanceKeeper(leftBlock.first, rightBlock.first);
 
     cout << "left_min: " << leftBlock.first << "mid_min: " << midBlock.first << "right_min: " << rightBlock.first << endl;
+    cout << "left_max: " << leftBlock.second << "mid_max: " << midBlock.second << "right_max: " << rightBlock.second << endl;
 }
 
 void laserScanCallback(const sensor_msgs::LaserScan::ConstPtr& laserScanData)
 {
     velocityCommand.linear.x = 0.1;
     velocityCommand.angular.z = 0;
-    keepBalance(laserScanData);   
+    Go(laserScanData);   
 }
 
 int main(int argc, char **argv)
