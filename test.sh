@@ -40,7 +40,12 @@ function init
     source devel/setup.bash
 }
 
-while getopts ihm:r:p:l:?: opt
+function cler
+{
+    rm -fr src
+}
+
+while getopts ichm:r:p:l:?: opt
 do
     case "$opt" in
       m)  master_url="$OPTARG";;
@@ -48,6 +53,7 @@ do
       p)  pkg_name="$OPTARG";;
       l)  launcher="$OPTARG";;
       i)  init;;
+      c)  cler;;
       h|\?)
           usage
 	  exit 1;;
@@ -57,7 +63,9 @@ shift `expr $OPTIND - 1`
 
 #The ROS_MASTER_URI and ROS_IP/ ROS_HOSTNAME will need to be set for ROS to run and/or for communication with the robot laptop. 
 export ROS_MASTER_URI=$master_url
+echo $ROS_MASTER_URI
 export ROS_IP=$ros_ip
+echo $ROS_IP
 
 #cmd execution
 echo "Start to make and launch!"
