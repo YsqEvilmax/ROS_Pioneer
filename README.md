@@ -1,6 +1,8 @@
 #Shaoqing Yu (Shawn)
 #UPI:syu702
 
+http://github.com/YsqEvilmax/ros_pioneer_ws.git
+
 # ros_pioneer_ws
 This is the project of COMPSYS726 Robotic &amp; Intelligence. The set-up process is automated by shell script. Require Linux environment and the ROS installed.
 
