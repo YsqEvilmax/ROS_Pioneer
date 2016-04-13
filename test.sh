@@ -35,8 +35,9 @@ function init
     (grep -Fxq "$content" CMakeLists.txt) && (echo "Content is already inclued!") || ( echo "Modified :" && echo "$content" && echo "$content" >> "CMakeLists.txt")
     cd ..   
     
-    [ -d rosaria ] || git clone https://github.com/amor-ros-pkg/rosaria.git
+    ## [ -d rosaria ] || git clone https://github.com/amor-ros-pkg/rosaria.git
     cd ..
+    catkin_make
     source devel/setup.bash
 }
 
