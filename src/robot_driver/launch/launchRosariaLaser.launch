@@ -1,10 +1,6 @@
-<launch> 
-    <node pkg="hokuyo_node" type="hokuyo_node" name="hokuyo"> 
-    </node> 
+<launch>  
     <node pkg="robot_driver" type="robot_driver_node" name="robot_driver_node" output="screen"> 
     </node> 
     <node pkg="rviz" type="rviz" name="rviz"> 
-    </node> 
-    <node pkg="rosaria" type="RosAria" name="RosAria"> 
     </node> 
 </launch>

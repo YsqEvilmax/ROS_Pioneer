@@ -5,7 +5,7 @@ master_url="http://localhost:11311"
 ros_ip="localhost"
 
 pkg_name="robot_driver"
-launcher="launchStageLaser.launch"
+launcher="launchRosariaLaser.launch"
 
 #initialize the environment variables
 if ! [ -n "$ROS_ROOT" ]; then
