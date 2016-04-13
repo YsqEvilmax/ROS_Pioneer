@@ -52,7 +52,8 @@ do
       r)  ros_ip="$OPTARG";;
       p)  pkg_name="$OPTARG";;
       l)  launcher="$OPTARG";;
-      i)  init;;
+      i)  init
+	  exit 1;;
       c)  cler
           exit 1;;
       h|\?)

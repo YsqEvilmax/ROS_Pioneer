@@ -19,7 +19,7 @@ private:
 	static const float auctionDis = 0.35;//Slow down when distance is smaller than this.
 	static const float trimDis = 0.5;//The range longer than this is meaningless.
 	static const int conflictTole = 3;//The tolerance of choice conflict.
-	static const int loop90 = 50;//The loop number to turn around.
+	static const int loop90 = 38;//The loop number to turn around.
 	int conflictCount;//The choice conflict counter.
  	int loopCount;//The turn around loop counter.
 	std::stack<float> trace;//The choice stack.
@@ -36,13 +36,13 @@ public:
 	    int blockDataNum = rangeDataNum / blockNum;//How many ranges in one block
 
 	    pair<float, float> rightBlock = CheckBlock(laserScanData, 0, blockDataNum);//right block
-	    pair<float, float> midBlock = CheckBlock(laserScanData, blockDataNum, blockDataNum * 2);//mid block
+	    pair<float, float> midBlock = CheckBlock(laserScanData, blockDataNum, blockDataNum *2);//mid block
 	    pair<float, float> leftBlock = CheckBlock(laserScanData, blockDataNum * 2,  rangeDataNum);//left block
 
-	    //keep balance by compare the minmum length in left and right block
-	    BalanceKeeper(leftBlock.first, rightBlock.first);
 	    //control speed based on the minimum length in mid block
 	    SpeedHandler(midBlock.first);
+	    //keep balance by compare the minmum length in left and right block
+	    BalanceKeeper(leftBlock.first, rightBlock.first);
 	    //escape from a "head-shaking" trap
 	    TrapEscaper(velocityCommand.angular.z, midBlock.first);
 
@@ -70,10 +70,6 @@ protected:
 	    {
 	        cout<< "Too close! Speed down." << endl;
 	        velocityCommand.linear.x = 0;
-		if(velocityCommand.angular.z == 0)
-		{
-		    velocityCommand.angular.z = -0.1;
-                }
 	    }
 	    else//no problem, go ahead
 	    {
