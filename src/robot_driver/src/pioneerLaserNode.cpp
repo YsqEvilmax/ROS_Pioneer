@@ -19,7 +19,7 @@ private:
 	static const float auctionDis = 0.35;//Slow down when distance is smaller than this.
 	static const float trimDis = 0.5;//The range longer than this is meaningless.
 	static const int conflictTole = 3;//The tolerance of choice conflict.
-	static const int loop90 = 50;//The loop number to turn around.
+	static const int loop90 = 75;//The loop number to turn around.
 	int conflictCount;//The choice conflict counter.
  	int loopCount;//The turn around loop counter.
 	std::stack<float> trace;//The choice stack.
@@ -72,7 +72,7 @@ protected:
 	        velocityCommand.linear.x = 0;
 		if(velocityCommand.angular.z == 0)
 		{
-		    velocityCommand.angular.z = -0.1;
+		    velocityCommand.angular.z = -0.3;
                 }
 	    }
 	    else//no problem, go ahead
@@ -86,12 +86,12 @@ protected:
 	     if(left > right)//left space is wider
 	     {
 	        cout << "Turn left!" << endl;
-	        velocityCommand.angular.z = 0.1;
+	        velocityCommand.angular.z = 0.3;
 	     }
 	     else if(left < right)//right space is wider
 	     {
 	        cout << "Turn right!" << endl;
-	        velocityCommand.angular.z = -0.1;
+	        velocityCommand.angular.z = -0.3;
 	     }
 	     else//balanced
 	     {
