@@ -47,14 +47,14 @@ public:
 	    TrapEscaper(velocityCommand.angular.z, midBlock.first);
 
 	    //imformation display
-	    cout << "left_min: " << leftBlock.first << " "
-	    	 << "mid_min: " << midBlock.first << " "
-			 << "right_min: " << rightBlock.first << endl;
-	    cout << "left_max: " << leftBlock.second << " "
-	    	 << "mid_max: " << midBlock.second << " "
-			 << "right_max: " << rightBlock.second << endl;
-	    if(!trace.empty())
-	    	cout << trace.top() << endl;
+	    //cout << "left_min: " << leftBlock.first << " "
+	    //	 << "mid_min: " << midBlock.first << " "
+	    //	 << "right_min: " << rightBlock.first << endl;
+	    //cout << "left_max: " << leftBlock.second << " "
+	    //	 << "mid_max: " << midBlock.second << " "
+	    //		 << "right_max: " << rightBlock.second << endl;
+	    //if(!trace.empty())
+	    //	cout << trace.top() << endl;
 
 	}
 
